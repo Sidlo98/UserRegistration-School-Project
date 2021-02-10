@@ -4,9 +4,67 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <title>UserRegistration</title>
 </head>
-<body>
+<body class="bg-dark">
   
+  <nav class="bg-info text-white text-center py-2 mb-3">
+    <h1>User Regisration</h1>
+  </nav>
+
+  <section class="container bg-secondary p-3 rounded mb-5">
+    
+    <form novalidate id="regForm">
+
+      <div class="row">
+
+        <div class="form-group col-md-6 mb-3">
+          <input type="text" id="firstName" class="form-control " placeholder="First Name">
+          <div class="invalid-feedback"></div>
+          <div class="valid-feedback"></div>
+        </div>
+  
+        <div class="form-group col-md-6 mb-3">
+          <input type="text" id="lastName" class="form-control" placeholder="Last Name">
+          <div class="invalid-feedback"></div>
+          <div class="valid-feedback"></div>
+        </div>
+
+      </div>  
+
+      <div class="form-group col-md-12 mb-3">
+        <input  type="email" id="email" class="form-control" placeholder="Email">
+        <div class="invalid-feedback"></div>
+        <div class="valid-feedback"></div>          
+      </div>
+      
+        <button type="submit" class="btn btn-info text-white">Register User</button>
+
+    </form>
+
+  </section>
+
+  <section class="container  p-3 rounded">
+    
+    <ul id="user-list" class="list-group">
+
+      <li class="list-group-item d-flex justify-content-between align-items-center mb-2">
+        <div>
+          <p class="fs-3 m-0">Pontus Sidlo</p>
+          <a class="fs-6 " href="mailto:poppe9898@hotmail.com">poppe9898@hotmail.com</a>
+        </div>
+        <div class="d-flex flex-column">
+          <button id="edit" class="btn btn-warning m-1">Change</button>
+          <button id="delete" class="btn btn-danger m-1">X</button>
+        </div>
+      </li>
+     
+    </ul>
+
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
