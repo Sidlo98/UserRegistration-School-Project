@@ -19,7 +19,7 @@ The user information must be validated before being saved in a list. If the info
 
 A text must also be printed out informing what errors have occurred in the form.
 
-When the form has been validated and approved, this should be saved in a list and then the list should be displayed on the page. For each user listed, information such as the full name and email address should be displayed, of which the email address should be in a smaller size and displayed under the full name:
+When the form has been validated and approved, this should be saved in a list and then the list should be displayed on the page. For each user listed, information such as the full name and email address should be displayed, of which the email address should be in a smaller size and displayed under the full name
 
 To pass well approved, you must do the following:
 
