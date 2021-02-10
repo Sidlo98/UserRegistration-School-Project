@@ -21,12 +21,6 @@ A text must also be printed out informing what errors have occurred in the form.
 
 When the form has been validated and approved, this should be saved in a list and then the list should be displayed on the page. For each user listed, information such as the full name and email address should be displayed, of which the email address should be in a smaller size and displayed under the full name:
 
-First Name Last Name
-firstname.lastname@domain.com
-
-
- 
-
 To pass well approved, you must do the following:
 
 It must be possible to change a user's information. When you press the change button, the information of the current user must be displayed in the fields in the form and when you press the save button, the information must be updated. Note that the user's position in the list should not be changed, it should retain the position it was originally given.
