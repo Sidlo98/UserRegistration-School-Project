@@ -5,31 +5,25 @@ class User {
     this.email = email;
     this.id = Date.now().toString();
   }
-  set editUser(newUserInfo) {
-    newUserInfo = newUserInfo;
-    this.firstName = newUserInfo[0];
-    this.lastName = newUserInfo[1];
-    this.email = newUserInfo[2];
-  }
 }
 
 let users = [
   {
-    firstName: 'Johasdan',
+    firstName: 'John',
     lastName: 'Doe',
-    email: 'mail@mail.com',
+    email: 'john@mail.com',
     id:   '1211511252251123'
 },
   {
-    firstName: 'Joasdhn',
-    lastName: 'Ddaoe',
-    email: 'mailda@mail.com',
-    id:   '1211511252251312315'
+    firstName: 'Kalle',
+    lastName: 'Niss+on',
+    email: 'kalle@mail.com',
+    id:   '1211511252251312318'
 },
   {
-    firstName: 'John',
-    lastName: 'daDoe',
-    email: 'madail@mail.com',
+    firstName: 'Ola',
+    lastName: 'Konny',
+    email: 'ola@mail.com',
     id:   '12115112522515'
 }
 ];
@@ -39,6 +33,7 @@ const output = document.querySelector('#user-list');
 const _firstName = document.querySelector('#firstName');
 const _lastName = document.querySelector('#lastName');
 const _email = document.querySelector('#email');
+const changeBtn = document.querySelector('#changeBtn');
 
 // Listing the users
 const listUsers = () => {
@@ -69,13 +64,13 @@ submit.addEventListener('submit', e => {
     nameValidate(_firstName);
     nameValidate(_lastName);
     emailValidate(_email);
-  
+
     if(nameValidate(_firstName) && nameValidate(_lastName) && emailValidate(_email) && uniqueEmail(_email) ) {
-  
+
       let newUser = new User(_firstName.value.trim(), _lastName.value.trim(), _email.value.trim());
           users.push(newUser);
           listUsers();
-  
+
           _email.value = ''
           _firstName.value = ''
           _lastName.value = ''
@@ -87,18 +82,20 @@ submit.addEventListener('submit', e => {
       _email.classList.add('is-invalid');
       _email.nextSibling.nextSibling.innerHTML = 'This email has already been registerd';
     }
-  
 })
 
 //---------------------------------------------------------
 // Change button
-
+let _userId;
 output.addEventListener('click', e => {
   if(e.target.classList.contains('btn-change')) {
-    const _userId = e.target.parentNode.parentNode.id;
-    const user = users.find(user => {
+    _userId = e.target.parentNode.parentNode.id;
+
+    let user = users.find(user => {
       return user.id === _userId;
     })
+
+    console.log(user);
 
       _firstName.value = user.firstName;
       _lastName.value = user.lastName;
@@ -108,29 +105,28 @@ output.addEventListener('click', e => {
       submit.childNodes[7].classList.remove('d-none');
       output.classList.add('d-none')
 
-
-
-      submit.childNodes[7].addEventListener('click', e => {
-       let changeUser = users.indexOf(user);      
-        let  newUser = {
-          firstName: _firstName.value,
-          lastName: _lastName.value,
-          email: _email.value
-         }
-
-        users.splice(changeUser, 0)
-        users.splice(changeUser, 1, newUser)
- 
-        submit.childNodes[5].classList.remove('d-none');
-        submit.childNodes[7].classList.add('d-none');
-        output.classList.remove('d-none')
-        _email.value = ''
-        _firstName.value = ''
-        _lastName.value = ''
-        listUsers();
-       })
   }
   })
+// --------------------------------------------------------------
+
+// save button
+  saveBtn.addEventListener('click', e => {
+    
+     user.firstName = _firstName.value
+     user.lastName = _lastName.value
+     user.email = _email.value
+    
+     console.log(users);
+
+     submit.childNodes[5].classList.remove('d-none');
+     submit.childNodes[7].classList.add('d-none');
+     output.classList.remove('d-none');
+     listUsers();
+     _email.value = ''
+     _firstName.value = ''
+     _lastName.value = ''
+
+    })
 // -----------------------------------------------
 
 //Remove a user
@@ -145,20 +141,19 @@ output.addEventListener('click', e => {
 
 //  Validation update 
 _firstName.addEventListener('keyup', () => {
-  if(nameValidate(_firstName) === true) {
+  if(nameValidate(_firstName)) {
     _firstName.classList.add('is-valid');
   }
- 
 })
 
 _lastName.addEventListener('keyup', () => {
-  if(nameValidate(_lastName) === true) {
+  if(nameValidate(_lastName)) {
     _lastName.classList.add('is-valid');
   }
 })
 
 _email.addEventListener('keyup' , () => {
-  if(emailValidate(_email) === true) {
+  if(emailValidate(_email)) {
     _email.classList.add('is-valid');
   }
 })
