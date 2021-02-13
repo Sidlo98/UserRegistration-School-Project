@@ -1,6 +1,10 @@
 # UserRegistration-School-Project
 First Assignment i javascript-1
 
+https://sidlo98.github.io/UserRegistration-School-Project/
+
+Instructions:
+
 In this assignment, you will create a website using HTML, CSS and JS that handle users. You can use css libraries such as Bootstrap and MDBootstrap if you want to make the page more attractive. You can also use Bootstrap's various components if you wish.
 
  
