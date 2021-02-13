@@ -7,33 +7,18 @@ class User {
   }
 }
 
+const user1 = new User('Ola','Konny', 'Ola@mail.com');
+
 let users = [
-  {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@mail.com',
-    id:   '1211511252251123'
-},
-  {
-    firstName: 'Kalle',
-    lastName: 'Niss+on',
-    email: 'kalle@mail.com',
-    id:   '1211511252251312318'
-},
-  {
-    firstName: 'Ola',
-    lastName: 'Konny',
-    email: 'ola@mail.com',
-    id:   '12115112522515'
-}
-];
+  user1
+]
 
 const submit = document.querySelector('#regForm');
 const output = document.querySelector('#user-list');
 const _firstName = document.querySelector('#firstName');
 const _lastName = document.querySelector('#lastName');
 const _email = document.querySelector('#email');
-const changeBtn = document.querySelector('#changeBtn');
+const saveBtn = document.querySelector('#saveBtn');
 
 // Listing the users
 const listUsers = () => {
@@ -53,21 +38,19 @@ const listUsers = () => {
       </li>
     `
   });
+  console.log(users);
 }
-
-listUsers();
 // --------------------------------------------------------------------------
 
-// Here is the form excecute 
+listUsers();
+
+// Registrate button
 submit.addEventListener('submit', e => {
     e.preventDefault();
-    nameValidate(_firstName);
-    nameValidate(_lastName);
-    emailValidate(_email);
 
     if(nameValidate(_firstName) && nameValidate(_lastName) && emailValidate(_email) && uniqueEmail(_email) ) {
 
-      let newUser = new User(_firstName.value.trim(), _lastName.value.trim(), _email.value.trim());
+      let newUser = new User(formatString(_firstName.value.trim()),formatString(_lastName.value.trim()), _email.value.trim());
           users.push(newUser);
           listUsers();
 
@@ -87,15 +70,14 @@ submit.addEventListener('submit', e => {
 //---------------------------------------------------------
 // Change button
 let _userId;
+let user;
 output.addEventListener('click', e => {
   if(e.target.classList.contains('btn-change')) {
     _userId = e.target.parentNode.parentNode.id;
 
-    let user = users.find(user => {
+    user = users.find(user => {
       return user.id === _userId;
     })
-
-    console.log(user);
 
       _firstName.value = user.firstName;
       _lastName.value = user.lastName;
@@ -111,27 +93,30 @@ output.addEventListener('click', e => {
 
 // save button
   saveBtn.addEventListener('click', e => {
-    
-     user.firstName = _firstName.value
-     user.lastName = _lastName.value
-     user.email = _email.value
-    
-     console.log(users);
 
-     submit.childNodes[5].classList.remove('d-none');
-     submit.childNodes[7].classList.add('d-none');
-     output.classList.remove('d-none');
-     listUsers();
-     _email.value = ''
-     _firstName.value = ''
-     _lastName.value = ''
+    user.email = '';
+    if(nameValidate(_firstName) && nameValidate(_lastName) && emailValidate(_email) && uniqueEmail(_email))  {
 
+      user.firstName = _firstName.value
+      user.lastName = _lastName.value
+      user.email = _email.value
+      submit.childNodes[5].classList.remove('d-none');
+      submit.childNodes[7].classList.add('d-none');
+      output.classList.remove('d-none');
+      listUsers();
+      _email.value = ''
+      _firstName.value = ''
+      _lastName.value = ''
+    }
+    else if(nameValidate(_firstName) && nameValidate(_lastName) && emailValidate(_email)){
+      _email.classList.add('is-invalid');
+      _email.nextSibling.nextSibling.innerHTML = 'This email has already been registerd';
+    }
     })
 // -----------------------------------------------
 
 //Remove a user
 output.addEventListener('click', e => {
-
   if(e.target.classList.contains('btn-delete')) {
     users = users.filter(user => user.id !== e.target.parentNode.parentNode.id)
     listUsers();
@@ -208,4 +193,11 @@ const uniqueEmail = function(email) {
     }
   })  
   return emailUnique;
+}
+
+const formatString = function(name) {
+  const firstLetter =  name.charAt(0).toUpperCase();
+  const restOfLetters = name.slice(1).toLowerCase();
+  const formatedName = firstLetter + restOfLetters;
+  return formatedName;
 }
