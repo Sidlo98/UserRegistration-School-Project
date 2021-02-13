@@ -107,6 +107,9 @@ output.addEventListener('click', e => {
       _email.value = ''
       _firstName.value = ''
       _lastName.value = ''
+      _firstName.classList.remove('is-valid');
+      _lastName.classList.remove('is-valid');
+      _email.classList.remove('is-valid');
     }
     else if(nameValidate(_firstName) && nameValidate(_lastName) && emailValidate(_email)){
       _email.classList.add('is-invalid');
