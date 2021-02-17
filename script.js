@@ -48,6 +48,14 @@ listUsers();
 submit.addEventListener('submit', e => {
     e.preventDefault();
 
+    nameValidate(_firstName);
+    nameValidate(_lastName);
+    emailValidate(_email);
+    uniqueEmail(_email);
+
+
+
+
     if(nameValidate(_firstName) && nameValidate(_lastName) && emailValidate(_email) && uniqueEmail(_email) ) {
 
       let newUser = new User(formatString(_firstName.value.trim()),formatString(_lastName.value.trim()), _email.value.trim());
