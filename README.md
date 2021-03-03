@@ -1,5 +1,5 @@
 # UserRegistration-School-Project
-First Assignment i javascript-1
+First Assignment in javascript-1
 
 https://sidlo98.github.io/UserRegistration-School-Project/
 
